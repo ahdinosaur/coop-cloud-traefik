@@ -1,0 +1,9 @@
+---
+http:
+  middlewares:
+    keycloak:
+      forwardAuth:
+        address: "http://traefik-forward-auth:4181"
+        trustForwardHeader: true
+        authResponseHeaders:
+          - X-Forwarded-User

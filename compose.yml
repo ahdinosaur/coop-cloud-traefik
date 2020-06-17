@@ -1,0 +1,51 @@
+---
+version: "3.8"
+
+services:
+  traefik:
+    image: "traefik:v2.2.1"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "2222:2222"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "letsencrypt:/etc/letsencrypt"
+    configs:
+      - source: traefik_yml
+        target: /etc/traefik/traefik.yml
+      - source: file_provider_yml
+        target: /etc/traefik/file-provider.yml
+    networks:
+      - proxy
+    deploy:
+      mode: replicated
+      replicas: 1
+      update_config:
+        failure_action: rollback
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.services.traefik.loadbalancer.server.port=web"
+        - "traefik.http.routers.traefik.rule=Host(`${DOMAIN}`)"
+        - "traefik.http.routers.traefik.entrypoints=web-secure"
+        - "traefik.http.routers.traefik.tls.certresolver=${LETS_ENCRYPT_ENV}"
+        - "traefik.http.routers.traefik.service=api@internal"
+        - "traefik.http.routers.traefik.middlewares=keycloak@file"
+
+networks:
+  proxy:
+    external: true
+
+configs:
+  traefik_yml:
+    name: ${STACK_NAME}_traefik_yml_${TRAEFIK_YML_VERSION}
+    file: traefik.yml
+  file_provider_yml:
+    name: ${STACK_NAME}_file_provider_yml_${FILE_PROVIDER_YML_VERSION}
+    file: file-provider.yml
+
+volumes:
+  letsencrypt:

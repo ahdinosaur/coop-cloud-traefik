@@ -1,0 +1,5 @@
+export DOMAIN=traefik.swarm.autonomic.zone
+export FILE_PROVIDER_YML_VERSION=v1
+export LETS_ENCRYPT_ENV=staging
+export STACK_NAME=traefik
+export TRAEFIK_YML_VERSION=v1
