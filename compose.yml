@@ -19,13 +19,9 @@ services:
     networks:
       - proxy
     deploy:
-      mode: replicated
-      replicas: 1
       update_config:
         failure_action: rollback
-      placement:
-        constraints:
-          - node.role == manager
+        order: start-first
       labels:
         - "traefik.enable=true"
         - "traefik.http.services.traefik.loadbalancer.server.port=web"
