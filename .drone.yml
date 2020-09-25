@@ -1,0 +1,19 @@
+---
+kind: pipeline
+name: deploy to swarm-test.autonomic.zone
+steps:
+  - name: deployment
+    image: decentral1se/stack-ssh-deploy:0.0.1
+    settings:
+      compose: compose.yml
+      host: swarm-test.autonomic.zone
+      stack: traefik
+      deploy_key:
+        from_secret: drone_deploy_key
+    environment:
+      DOMAIN: traefik.swarm-test.autonomic.zone
+      STACK_NAME: traefik
+      LETS_ENCRYPT_ENV: production
+trigger:
+  branch:
+    - master
