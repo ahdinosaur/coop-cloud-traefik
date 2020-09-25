@@ -14,6 +14,8 @@ steps:
       DOMAIN: traefik.swarm-test.autonomic.zone
       STACK_NAME: traefik
       LETS_ENCRYPT_ENV: production
+      TRAEFIK_YML_VERSION: v1
+      FILE_PROVIDER_YML_VERSION: v1
 trigger:
   branch:
     - master
