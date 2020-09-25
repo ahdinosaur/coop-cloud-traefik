@@ -1,6 +1,6 @@
 ---
 log:
-  level: INFO
+  level: DEBUG
 
 providers:
   docker:
