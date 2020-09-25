@@ -8,7 +8,7 @@ steps:
       host: swarm-test.autonomic.zone
       stack: traefik
       deploy_key:
-        from_secret: drone_ssh_swarm-test.autonomic.zone
+        from_secret: "drone_ssh_swarm-test.autonomic.zone"
     environment:
       DOMAIN: traefik.swarm-test.autonomic.zone
       STACK_NAME: traefik
