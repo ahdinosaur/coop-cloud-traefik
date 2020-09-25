@@ -5,7 +5,6 @@ steps:
   - name: deployment
     image: decentral1se/stack-ssh-deploy:latest
     settings:
-      compose: compose.yml
       host: swarm-test.autonomic.zone
       stack: traefik
       deploy_key:
