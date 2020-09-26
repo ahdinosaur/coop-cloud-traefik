@@ -26,6 +26,8 @@ entrypoints:
     address: ":443"
   gitea-ssh:
     address: ":2222"
+  smtp-submission:
+    address: ":587"
 
 certificatesResolvers:
   staging:
