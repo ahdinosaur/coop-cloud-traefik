@@ -19,6 +19,15 @@ services:
         target: /etc/traefik/file-provider.yml
     networks:
       - proxy
+    environment:
+      - DASHBOARD_ENABLED
+      - LOG_LEVEL
+    healthcheck:
+      test: ["CMD", "traefik", "healthcheck"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 1m
     deploy:
       update_config:
         failure_action: rollback
@@ -40,6 +49,7 @@ configs:
   traefik_yml:
     name: ${STACK_NAME}_traefik_yml_${TRAEFIK_YML_VERSION}
     file: traefik.yml
+    template_driver: golang
   file_provider_yml:
     name: ${STACK_NAME}_file_provider_yml_${FILE_PROVIDER_YML_VERSION}
     file: file-provider.yml

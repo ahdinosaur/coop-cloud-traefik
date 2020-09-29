@@ -1,6 +1,6 @@
 ---
 log:
-  level: INFO
+  level: {{ env "LOG_LEVEL" }}
 
 providers:
   docker:
@@ -12,7 +12,7 @@ providers:
     filename: /etc/traefik/file-provider.yml
 
 api:
-  dashboard: false
+  dashboard: {{ env "DASHBOARD_ENABLED" }}
   debug: false
 
 entrypoints:
@@ -28,6 +28,9 @@ entrypoints:
     address: ":2222"
   smtp-submission:
     address: ":587"
+
+ping:
+  entryPoint: web
 
 certificatesResolvers:
   staging:
