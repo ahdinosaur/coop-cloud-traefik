@@ -8,8 +8,10 @@ providers:
     exposedByDefault: false
     network: proxy
     swarmMode: true
+  {{ if eq (env "FILE_PROVIDER_ENABLED") "1" }}
   file:
     filename: /etc/traefik/file-provider.yml
+  {{ end }}
 
 api:
   dashboard: {{ env "DASHBOARD_ENABLED" }}
