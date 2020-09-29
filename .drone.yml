@@ -6,15 +6,14 @@ steps:
     image: decentral1se/stack-ssh-deploy:latest
     settings:
       host: swarm-test.autonomic.zone
-      stack: traefik_test
+      stack: traefik
       deploy_key:
         from_secret: drone_ssh_swarm_test
-      purge: true
     environment:
       DOMAIN: traefik.swarm-test.autonomic.zone
-      STACK_NAME: traefik_test
+      STACK_NAME: traefik
       LETS_ENCRYPT_ENV: production
-      TRAEFIK_YML_VERSION: v1
+      TRAEFIK_YML_VERSION: v4
       FILE_PROVIDER_YML_VERSION: v1
 trigger:
   branch:
