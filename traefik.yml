@@ -37,14 +37,14 @@ ping:
 certificatesResolvers:
   staging:
     acme:
-      email: {{ env "LETSENCRYPT_EMAIL" }}
+      email: {{ env "LETS_ENCRYPT_EMAIL" }}
       storage: /etc/letsencrypt/staging-acme.json
       caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
       httpChallenge:
         entryPoint: web
   production:
     acme:
-      email: {{ env "LETSENCRYPT_EMAIL" }}
+      email: {{ env "LETS_ENCRYPT_EMAIL" }}
       storage: /etc/letsencrypt/production-acme.json
       httpChallenge:
         entryPoint: web
