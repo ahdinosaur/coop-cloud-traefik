@@ -37,14 +37,14 @@ ping:
 certificatesResolvers:
   staging:
     acme:
-      email: helo@autonomic.zone
+      email: {{ env "LETSENCRYPT_EMAIL" }}
       storage: /etc/letsencrypt/staging-acme.json
       caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
       httpChallenge:
         entryPoint: web
   production:
     acme:
-      email: helo@autonomic.zone
+      email: {{ env "LETSENCRYPT_EMAIL" }}
       storage: /etc/letsencrypt/production-acme.json
       httpChallenge:
         entryPoint: web
