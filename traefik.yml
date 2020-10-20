@@ -28,8 +28,10 @@ entrypoints:
     address: ":443"
   gitea-ssh:
     address: ":2222"
+  {{ if eq (env "SMTP_ENABLED") "1" }}
   smtp-submission:
     address: ":587"
+  {{ end }}
 
 ping:
   entryPoint: web

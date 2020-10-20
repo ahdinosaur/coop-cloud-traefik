@@ -15,3 +15,7 @@ export TRAEFIK_YML_VERSION=v1
 #export FILE_PROVIDER_ENABLED=1
 ## Options for file-provider / Keycloak SSO
 #export FILE_PROVIDER_YML_VERSION=v1
+
+## SMTP port 587
+#export COMPOSE_FILE="compose.yml:compose.smtp.yml"
+#export SMTP_ENABLED=1
