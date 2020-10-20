@@ -5,10 +5,15 @@ services:
   traefik:
     image: "traefik:2.3.1"
     ports:
-      - "80:80"
-      - "443:443"
-      - "587:587"
-      - "2222:2222"
+      - target: 80
+        published: 80
+        mode: host
+      - target: 443
+        published: 443
+        mode: host
+      - target: 2222
+        published: 2222
+        mode: host
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       - "letsencrypt:/etc/letsencrypt"
@@ -29,7 +34,6 @@ services:
     deploy:
       update_config:
         failure_action: rollback
-        order: start-first
       labels:
         - "traefik.enable=true"
         - "traefik.http.services.traefik.loadbalancer.server.port=web"
