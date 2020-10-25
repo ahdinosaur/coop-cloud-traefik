@@ -4,6 +4,7 @@ export STACK_NAME=traefik
 export DOMAIN=traefik.example.com
 export LETS_ENCRYPT_ENV=production
 
+export LETS_ENCRYPT_EMAIL=certs@example.com
 # export DASHBOARD_ENABLED=true
 # WARN, INFO etc.
 export LOG_LEVEL=WARN
@@ -19,3 +20,6 @@ export TRAEFIK_YML_VERSION=v1
 ## SMTP port 587
 #export COMPOSE_FILE="compose.yml:compose.smtp.yml"
 #export SMTP_ENABLED=1
+
+## Host-mode networking
+#export COMPOSE_FILE="compose.yml:compose.host.yml"
