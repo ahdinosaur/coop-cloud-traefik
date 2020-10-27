@@ -14,6 +14,8 @@ services:
     configs:
       - source: traefik_yml
         target: /etc/traefik/traefik.yml
+      - source: file_provider_yml
+        target: /etc/traefik/file-provider.yml
     networks:
       - proxy
     environment:
@@ -34,7 +36,9 @@ services:
         - "traefik.http.routers.traefik.rule=Host(`${DOMAIN}`)"
         - "traefik.http.routers.traefik.entrypoints=web-secure"
         - "traefik.http.routers.traefik.tls.certresolver=${LETS_ENCRYPT_ENV}"
+        - "traefik.http.routers.traefik.tls.options=default@file"
         - "traefik.http.routers.traefik.service=api@internal"
+        - "traefik.http.routers.traefik.middlewares=security@file"
 
 networks:
   proxy:
@@ -45,6 +49,9 @@ configs:
     name: ${STACK_NAME}_traefik_yml_${TRAEFIK_YML_VERSION}
     file: traefik.yml
     template_driver: golang
+  file_provider_yml:
+    name: ${STACK_NAME}_file_provider_yml_${FILE_PROVIDER_YML_VERSION}
+    file: file-provider.yml
 
 volumes:
   letsencrypt:
