@@ -3,16 +3,8 @@ version: "3.8"
 
 services:
   app:
-    configs:
-      - source: file_provider_yml
-        target: /etc/traefik/file-provider.yml
     deploy:
       labels:
         - "traefik.http.routers.traefik.middlewares=keycloak@file"
     environment:
-      - FILE_PROVIDER_ENABLED
-
-configs:
-  file_provider_yml:
-    name: ${STACK_NAME}_file_provider_yml_${FILE_PROVIDER_YML_VERSION}
-    file: file-provider.yml
+      - KEYCLOAK_MIDDLEWARE_ENABLED
