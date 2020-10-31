@@ -3,6 +3,9 @@ version: "3.8"
 
 services:
   app:
+    deploy:
+      update_config:
+        order: stop-first
     ports:
       - target: 80
         published: 80
