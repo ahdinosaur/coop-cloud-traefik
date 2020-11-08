@@ -26,6 +26,8 @@ entrypoints:
     address: ":443"
   gitea-ssh:
     address: ":2222"
+  foodsoft-smtp:
+    address: ":2525"
   {{ if eq (env "SMTP_ENABLED") "1" }}
   smtp-submission:
     address: ":587"
