@@ -14,7 +14,7 @@ steps:
       STACK_NAME: traefik
       LETS_ENCRYPT_ENV: production
       LETS_ENCRYPT_EMAIL: helo@autonomic.zone
-      TRAEFIK_YML_VERSION: v2
+      TRAEFIK_YML_VERSION: v3
       FILE_PROVIDER_YML_VERSION: v2
 trigger:
   branch:
