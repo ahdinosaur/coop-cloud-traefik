@@ -24,10 +24,14 @@ entrypoints:
           to: web-secure
   web-secure:
     address: ":443"
+  {{ if eq (env "GITEA_SSH_ENABLED") "1" }}
   gitea-ssh:
     address: ":2222"
+  {{ end }}
+  {{ if eq (env "FOODSOFT_SMTP_ENABLED") "1" }}
   foodsoft-smtp:
     address: ":2525"
+  {{ end }}
   {{ if eq (env "SMTP_ENABLED") "1" }}
   smtp-submission:
     address: ":587"
