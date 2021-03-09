@@ -21,7 +21,10 @@ services:
       - proxy
     environment:
       - DASHBOARD_ENABLED
+      - FOODSOFT_SMTP_ENABLED
+      - GITEA_SSH_ENABLED
       - LOG_LEVEL
+      - SMTP_ENABLED
     healthcheck:
       test: ["CMD", "traefik", "healthcheck"]
       interval: 30s
