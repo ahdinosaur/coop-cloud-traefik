@@ -44,6 +44,7 @@ services:
         - "traefik.http.routers.traefik.tls.options=default@file"
         - "traefik.http.routers.traefik.service=api@internal"
         - "traefik.http.routers.traefik.middlewares=security@file"
+        - "coop-cloud.${STACK_NAME}.app.version=${ABRA_TYPE_APP_VERSION}-${ABRA_TYPE_APP_DIGEST}"
 
 networks:
   proxy:
