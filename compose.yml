@@ -1,6 +1,4 @@
----
 version: "3.8"
-
 services:
   app:
     image: "traefik:v2.4.8"
@@ -44,12 +42,10 @@ services:
         - "traefik.http.routers.traefik.tls.options=default@file"
         - "traefik.http.routers.traefik.service=api@internal"
         - "traefik.http.routers.traefik.middlewares=security@file"
-        - "coop-cloud.${STACK_NAME}.app.version=${ABRA_TYPE_APP_VERSION}-${ABRA_TYPE_APP_DIGEST}"
-
+        - coop-cloud.${STACK_NAME}.app.version=v2.4.8-d7d63b0d
 networks:
   proxy:
     external: true
-
 configs:
   traefik_yml:
     name: ${STACK_NAME}_traefik_yml_${TRAEFIK_YML_VERSION}
@@ -58,6 +54,5 @@ configs:
   file_provider_yml:
     name: ${STACK_NAME}_file_provider_yml_${FILE_PROVIDER_YML_VERSION}
     file: file-provider.yml
-
 volumes:
   letsencrypt:
