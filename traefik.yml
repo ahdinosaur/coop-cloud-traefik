@@ -36,6 +36,10 @@ entrypoints:
   smtp-submission:
     address: ":587"
   {{ end }}
+  {{ if eq (env "PEERTUBE_RTMP_ENABLED") "1" }}
+  peertube-rtmp:
+    address: ":1935"
+  {{ end }}
 
 ping:
   entryPoint: web
