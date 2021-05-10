@@ -4,7 +4,7 @@ services:
     image: "traefik:v2.4.8"
     # Note(decentral1se): *please do not* add any additional ports here.
     # Doing so could break new installs with port conflicts. Please use
-    # the usual `compose.$name.yml` approach for any additional ports
+    # the usual `compose.$app.yml` approach for any additional ports
     ports:
       - "80:80"
       - "443:443"
