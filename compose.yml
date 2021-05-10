@@ -50,10 +50,11 @@ networks:
 configs:
   traefik_yml:
     name: ${STACK_NAME}_traefik_yml_${TRAEFIK_YML_VERSION}
-    file: traefik.yml
+    file: traefik.yml.tmpl
     template_driver: golang
   file_provider_yml:
     name: ${STACK_NAME}_file_provider_yml_${FILE_PROVIDER_YML_VERSION}
-    file: file-provider.yml
+    file: file-provider.yml.tmpl
+    template_driver: golang
 volumes:
   letsencrypt:
