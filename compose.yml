@@ -26,6 +26,10 @@ services:
       - LOG_LEVEL
       - PEERTUBE_RTMP_ENABLED
       - SMTP_ENABLED
+      - OVH_APPLICATION_KEY
+      - OVH_APPLICATION_SECRET
+      - OVH_CONSUMER_KEY
+      - OVH_ENDPOINT
     healthcheck:
       test: ["CMD", "traefik", "healthcheck"]
       interval: 30s
