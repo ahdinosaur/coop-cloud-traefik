@@ -40,6 +40,10 @@ entrypoints:
   peertube-rtmp:
     address: ":1935"
   {{ end }}
+  {{ if eq (env "SSB_MUXRPC_ENABLED") "1" }}
+  ssb-muxrpc:
+    address: ":8008"
+  {{ end }}
 
 ping:
   entryPoint: web

@@ -2,6 +2,6 @@ version: "3.8"
 services:
   app:
     environment:
-      - PEERTUBE_RTMP_ENABLED
+      - SSB_MUXRPC_ENABLED
     ports:
-      - "1935:1935"
+      - "8008:8008"
