@@ -3,5 +3,7 @@ version: "3.8"
 
 services:
   app:
+    environment:
+      - SMTP_ENABLED
     ports:
       - "587:587"

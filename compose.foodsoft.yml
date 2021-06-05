@@ -1,5 +1,7 @@
 version: "3.8"
 services:
   app:
+    environment:
+      - FOODSOFT_SMTP_ENABLED
     ports:
       - "2525:2525"
