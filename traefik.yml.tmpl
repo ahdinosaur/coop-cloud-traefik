@@ -44,6 +44,10 @@ entrypoints:
   ssb-muxrpc:
     address: ":8008"
   {{ end }}
+  {{ if eq (env "MSSQL_ENABLED") "1" }}
+  mssql:
+    address: ":1433"
+  {{ end }}
 
 ping:
   entryPoint: web
