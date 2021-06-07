@@ -1,5 +1,7 @@
 version: "3.8"
 services:
   app:
+    environment:
+      - MSSQL_ENABLED
     ports:
       - "1433:1433"
