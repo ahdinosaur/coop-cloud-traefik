@@ -16,25 +16,22 @@ services:
         target: /etc/traefik/traefik.yml
       - source: file_provider_yml
         target: /etc/traefik/file-provider.yml
+      - source: entrypoint
+        target: /custom-entrypoint.sh
+        mode: 0555
     networks:
       - proxy
     environment:
       - DASHBOARD_ENABLED
       - LOG_LEVEL
-      {{ if eq (env "LETS_ENCRYPT_DNS_CHALLENGE_ENABLED") "1" }}
-      {{ if eq (env "LETS_ENCRYPT_DNS_CHALLENGE_PROVIDER") "ovh" }}
-      - OVH_APPLICATION_KEY
-      - OVH_APPLICATION_SECRET
-      - OVH_CONSUMER_KEY
-      - OVH_ENDPOINT
-      {{ end }}
-      {{ end }}
     healthcheck:
       test: ["CMD", "traefik", "healthcheck"]
       interval: 30s
       timeout: 10s
       retries: 10
       start_period: 1m
+    command: traefik
+    entrypoint: /custom-entrypoint.sh
     deploy:
       update_config:
         failure_action: rollback
@@ -60,6 +57,10 @@ configs:
   file_provider_yml:
     name: ${STACK_NAME}_file_provider_yml_${FILE_PROVIDER_YML_VERSION}
     file: file-provider.yml.tmpl
+    template_driver: golang
+  entrypoint:
+    name: ${STACK_NAME}_entrypoint_${ENTRYPOINT_VERSION}
+    file: entrypoint.sh.tmpl
     template_driver: golang
 volumes:
   letsencrypt:

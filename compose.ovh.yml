@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  app:
+    environment:
+      - OVH_APPLICATION_KEY
+      - OVH_APPLICATION_SECRET_FILE=/run/secrets/ovh_app_secret
+      - OVH_CONSUMER_KEY_FILE=/run/secrets/ovh_consumer_key
+      - OVH_ENABLED
+      - OVH_ENDPOINT
+    secrets:
+      - ovh_app_secret
+      - ovh_consumer_key
+
+secrets:
+  ovh_app_secret:
+    name: ${STACK_NAME}_ovh_app_secret_${SECRET_OVH_APP_SECRET_VERSION}
+    external: true
+  ovh_consumer_key:
+    name: ${STACK_NAME}_ovh_consumer_key_${SECRET_OVH_CONSUMER_KEY}
+    external: true
