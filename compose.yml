@@ -21,6 +21,14 @@ services:
     environment:
       - DASHBOARD_ENABLED
       - LOG_LEVEL
+      {{ if eq (env "LETS_ENCRYPT_DNS_CHALLENGE_ENABLED") "1" }}
+      {{ if eq (env "LETS_ENCRYPT_DNS_CHALLENGE_PROVIDER") "ovh" }}
+      - OVH_APPLICATION_KEY
+      - OVH_APPLICATION_SECRET
+      - OVH_CONSUMER_KEY
+      - OVH_ENDPOINT
+      {{ end }}
+      {{ end }}
     healthcheck:
       test: ["CMD", "traefik", "healthcheck"]
       interval: 30s
